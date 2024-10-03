@@ -3,3 +3,4 @@ ruff
 nbstripout
 bandit
 codespell
+loguru
