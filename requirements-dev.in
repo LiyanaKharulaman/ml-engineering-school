@@ -1,6 +1,0 @@
-pre_commit
-ruff
-nbstripout
-bandit
-codespell
-loguru

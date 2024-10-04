@@ -13,37 +13,37 @@ repos:
     hooks:
     - id: ruff-isort
       name: ruff isort
-      entry: ruff check --fix --select I --config pyproject.toml --show-fixes
+      entry: poetry run ruff check --fix --select I --config pyproject.toml --show-fixes
       types: [python]
       language: system
       stages: [commit, push]
     - id: ruff-format
       name: ruff format
-      entry: ruff format --config pyproject.toml
+      entry: poetry run ruff format --config pyproject.toml
       types: [python]
       language: system
       stages: [commit, push]
     - id: ruff-check
       name: ruff check
-      entry: ruff check --config pyproject.toml --output-format concise
+      entry: poetry run ruff check --config pyproject.toml --output-format concise
       types: [python]
       language: system
       stages: [commit, push]
     - id: nbstripout
       name: Strip Jupyter notebook output (nbstripout)
-      entry: python -m nbstripout
+      entry: poetry run python -m nbstripout
       types: [file]
       files: (.ipynb)$
       language: system
       stages: [commit, push]
     - id: python-bandit-vulnerability-check
       name: Security check (bandit)
-      entry: bandit
+      entry: poetry run bandit
       types: [python]
       args: ["--recursive", "lib/"]
       language: system
     - id: codespell
-      name: codespell markdown
+      name: poetry run codespell markdown
       entry: codespell
       types: [markdown]
       language: system
