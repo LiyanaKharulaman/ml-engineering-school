@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Daniel AL CHOBOQ <daniel.al-choboq@artefact.com>", "Jules BERTRAND <jules.bertrand@artefact.com>"]
 readme = "README.md"
+packages = [
+  { include = "lib", from = "." },
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
