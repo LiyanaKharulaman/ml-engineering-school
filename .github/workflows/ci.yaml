@@ -37,3 +37,7 @@ jobs:
 
       - name: Run Pre commit hook (formatting, linting & tests)
         run: poetry run pre-commit run --all-files --hook-stage pre-push --show-diff-on-failure
+
+      - name: Unit tests with pytest
+        run: |
+          poetry run pytest tests  -s -vv --cov=lib --cov-report=term-missing --cov-fail-under=20

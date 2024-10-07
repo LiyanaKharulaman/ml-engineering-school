@@ -3,12 +3,17 @@ from sklearn.model_selection import train_test_split
 
 
 def create_target(df: pd.DataFrame) -> pd.DataFrame:  # noqa: D103
+    if "Numtppd" not in df.columns:
+        raise KeyError("Column 'Numtppd' not found in DataFrame")
     df["target"] = df["Numtppd"].apply(lambda x: 1 if x != 0 else 0)
     return df
 
 
 def drop_cols(df: pd.DataFrame) -> tuple:  # noqa: D103
-    x = df.drop(columns=["Numtppd", "Numtpbi", "Indtppd", "Indtpbi", "target"])
+    required_columns = ["Numtppd", "Numtpbi", "Indtppd", "Indtpbi", "target"]
+    if not all(column in df.columns for column in required_columns):
+        raise KeyError(f"DataFrame must contain the following columns: {required_columns}")
+    x = df.drop(columns=required_columns)
     y = df["target"]
     return x, y
 
