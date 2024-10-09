@@ -31,6 +31,7 @@ def main(data_path: str, lgbm_params: dict) -> None:  # noqa: D103
     x_train, x_test, y_train, y_test = split_data(x, y)
     pipeline = train_pipeline(x_train, y_train, lgbm_params)
     y_pred = pipeline.predict(x_test)
+    logger.info("Successfully calculated predictions")
     metrics = calculate_metrics(y_pred, y_test)
     logger.info("\n\t".join([f"{k}: {v}" for k, v in metrics.items()]))
 
