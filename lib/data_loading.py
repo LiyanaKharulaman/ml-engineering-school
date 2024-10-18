@@ -16,7 +16,7 @@ def read_data(path: str) -> pd.DataFrame:  # noqa: D103
     Returns:
         pd.DataFrame: The DataFrame containing the data from the CSV file.
     """
-    df = pd.read_csv(path)
+    df = pd.read_csv("dataset/pg15training.csv")
     logger.info("Successfully read data.")
     logger.info(f"Dataframe contains {df.shape[0]} rows and {df.shape[1]} columns.")
     return df
