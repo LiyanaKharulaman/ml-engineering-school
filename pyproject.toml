@@ -15,6 +15,7 @@ lightgbm = "^4.5.0"
 scikit-learn = "^1.5.2"
 loguru = "^0.7.2"
 plotly = "^5.24.1"
+mlflow = "^2.17.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.0.1"

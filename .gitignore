@@ -139,3 +139,6 @@ secrets/*
 
 # Data
 /data/
+
+# MLFlow
+mlruns/
