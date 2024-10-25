@@ -5,16 +5,13 @@ on: [push, pull_request]
 jobs:
   CI:
     name: Launching CI
-    # runs-on: ubuntu-latest
     runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: ['3.10']
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          architecture: "arm64"
 
       - name: Install poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
@@ -26,8 +23,7 @@ jobs:
           key: venv-${{ env.python-version }}-${{ hashFiles('pyproject.toml') }}
 
       - name: Set Poetry Path
-        run: |
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+        run: echo "/home/runner/.local/bin/" >> $GITHUB_PATH
 
       - name: Install requirements
         run: |
@@ -38,5 +34,4 @@ jobs:
         run: poetry run pre-commit run --all-files --hook-stage pre-push --show-diff-on-failure
 
       - name: Unit tests with pytest
-        run: |
-          poetry run pytest tests  -s -vv --cov=lib --cov-report=term-missing --cov-fail-under=20
+        run: poetry run pytest tests  -s -vv --cov=lib --cov-report=term-missing --cov-fail-under=20
