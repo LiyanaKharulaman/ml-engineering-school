@@ -7,7 +7,8 @@ def download_data() -> None:  # noqa: D103
     pass
 
 
-def read_data(path: str) -> pd.DataFrame:  # noqa: D103
+# def read_data(path: str) -> pd.DataFrame:  # noqa: D103
+def read_data() -> None:
     """Read data from a CSV file into a DataFrame.
 
     Args:
