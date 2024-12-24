@@ -10,7 +10,6 @@ repos:
     -   id: check-json
     -   id: check-toml
     -   id: check-added-large-files
-        args: ['--maxkb=50000']  # Set the size limit to 10,000 KB (10 MB)
 
 -   repo: local
     hooks:
