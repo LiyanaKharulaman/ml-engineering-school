@@ -56,10 +56,10 @@ def calculate_feature_importances(pipeline: Pipeline) -> dict:
     return feature_importances_dict
 
 
-def plot_feature_importances(feature_importances: dict, top_n: int = 100) -> plt.Figure:
+def plot_feature_importances(feature_importances_dict: dict, top_n: int = 100) -> plt.Figure:
     """Plot a horizontal bar chart of the top N feature importances."""
-    categories = list(feature_importances.keys())
-    counts = list(feature_importances.values())
+    categories = list(feature_importances_dict.keys())
+    counts = list(feature_importances_dict.values())
     sorted_indices = np.argsort(counts)[::-1][:top_n]
     top_categories = [categories[i] for i in sorted_indices]
     top_counts = [counts[i] for i in sorted_indices]
@@ -205,6 +205,8 @@ def get_model_metric(model_name: str, model_stage: str, metric: str) -> float:
     """Get metric of a production model from model registry."""
     client = mlflow.MlflowClient()
     latest_production_version = client.get_latest_versions(name=model_name, stages=[model_stage])
+    if len(latest_production_version) == 0:
+        return 0
     latest_production_version_sorted = sorted(
         latest_production_version, key=lambda x: x.creation_timestamp, reverse=True
     )

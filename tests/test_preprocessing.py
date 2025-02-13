@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 import pandas as pd
 import pandas.testing as pdt
 
-from lib.preprocessing import create_target, drop_cols
+from lib.data_preprocessing import create_target, drop_cols
 
 
 @pytest.mark.parametrize(
